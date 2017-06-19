@@ -1,22 +1,21 @@
-import discord
 from discord.ext import commands
 import json
 
-
 """First file for the bot, this handles most functionality for now"""
+
+bot = commands.Bot(command_prefix="!")
+
+# all extensions loaded on startup----
+on_startup_extensions = [
+
+]
 
 
 def load_credentials():
     with open('config/config.json') as config_file:
         return json.load(config_file)
 
-config = load_credentials()
-clientID = config["clientID"]
-token = config["token"]
-
-bot = commands.Bot(command_prefix="!")
-
-running = None
+running = None  # Not sure if i need this honestly, keeping it just in case i need it later
 
 
 @bot.event
@@ -29,20 +28,27 @@ async def on_ready():
 
 @bot.event
 async def on_resume():
+    # Currently doesnt do anything. It will sometime, maybe.
     bot.running = True
-    print('Resumed :D')
+    await bot.say('Resumed :D')
 
 
 @bot.event
 async def on_pause():
+    # Currently doesnt do anything. It will sometime, maybe.
     bot.running = False
-    print('Paused :c')
+    await bot.say('Paused :c')
 
 
-@bot.command()
-async def add(left : int, right : int):
-    await bot.say(left + right)
+if __name__ == '__main__':
+    config = load_credentials()
 
+    # clientID = config["clientID"]
+    token = config["token"]
 
-bot.run(token)
+    # loads all of the extensions in on_startup_extensions
+    for extension in on_startup_extensions:
+        bot.load_extension(extension)
+
+    bot.run(token)
 

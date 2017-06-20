@@ -5,6 +5,7 @@ import json
 
 bot = commands.Bot(command_prefix="!")
 
+
 # all extensions loaded on startup
 on_startup_extensions = [
     'modules.definitions'
@@ -49,6 +50,6 @@ if __name__ == '__main__':
     # loads all of the extensions in on_startup_extensions
     for extension in on_startup_extensions:
         bot.load_extension(extension)
-
+    bot.change_presence(game="CHEEKI BREEKI", status="None", afk="False")
     bot.run(token)
 

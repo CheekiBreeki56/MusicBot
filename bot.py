@@ -5,9 +5,9 @@ import json
 
 bot = commands.Bot(command_prefix="!")
 
-# all extensions loaded on startup----
+# all extensions loaded on startup
 on_startup_extensions = [
-
+    'modules.definitions'
 ]
 
 

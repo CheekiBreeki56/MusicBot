@@ -5,7 +5,7 @@ import json
 
 bot = commands.Bot(command_prefix="!")
 
-# all extensions loaded on startup----
+# all extensions loaded on startup
 on_startup_extensions = [
 
 ]
@@ -15,7 +15,7 @@ def load_credentials():
     with open('config/config.json') as config_file:
         return json.load(config_file)
 
-running = None  # Not sure if i need this honestly, keeping it just in case i need it later
+
 
 
 @bot.event
@@ -28,15 +28,13 @@ async def on_ready():
 
 @bot.event
 async def on_resume():
-    # Currently doesnt do anything. It will sometime, maybe.
-    bot.running = True
+    # Will be put into the music module at a later date
     await bot.say('Resumed :D')
 
 
 @bot.event
 async def on_pause():
-    # Currently doesnt do anything. It will sometime, maybe.
-    bot.running = False
+    # Will be put into the music module at a later date
     await bot.say('Paused :c')
 
 
